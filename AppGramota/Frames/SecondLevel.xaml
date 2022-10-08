@@ -1,0 +1,74 @@
+﻿<Page x:Class="AppGramota.Frames.SecondLevel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AppGramota.Frames"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SecondLevel">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Выберите пункт:" 
+                       FontWeight="Bold" 
+                       Background="#3D8361" 
+                       Foreground="#EEF2E6" Height="30" 
+                       VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock x:Name="timeOfEnd" HorizontalAlignment="Right" Foreground="#EEF2E6" VerticalAlignment="Top" FontSize="20"/>
+        <StackPanel Orientation="Vertical" Margin="0 30">
+            <CheckBox x:Name="GivePodushka" Content="Откладывать" Foreground="#3D8361"/>
+            <TextBlock x:Name="score" Text="" Foreground="#3D8361" FontSize="20"/>
+            <TextBlock x:Name="money" Text="" Foreground="#3D8361" FontSize="20"/>
+            
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" x:Name="leftListStackPanel">
+            
+            <TextBlock Text="Покупка видеоигры: -10" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+            <TextBlock Text="Покупка сникерса: -15" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+            <TextBlock Text="Помочь другу: 15"  Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+            <TextBlock Text="Помыть машину: 20" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+            <TextBlock Text="Собирать бутылки: 30" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+            <TextBlock Text="Покупка чипсов: -10" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+        </StackPanel>
+        <Border Grid.Column="1" BorderThickness="5 0 0 0" BorderBrush="#1C6758">
+            <StackPanel x:Name="rightListStackPanel">
+                <ProgressBar x:Name="progress" Height="30" Value="50" Foreground="Blue" Background="Transparent"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" Text="Подработка: 20"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" Text="Копить на машинку: -20"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+                <TextBlock FontSize="20" AllowDrop="True" Drop="TextBlock_Drop"/>
+                <Rectangle Fill="#1C6758" Height="2"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
