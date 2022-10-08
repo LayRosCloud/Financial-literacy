@@ -9,13 +9,15 @@ namespace AppGramota.SaveChanges
 {
     internal class AppBoxs
     {
+        
         internal struct Dialogue
         {
             public static Grid dialogue;
             public static TextBlock NameHuman;
-            public static TextBlock Sentence;
-            public static Button ContinueButton;
+            public static TextBlock sentenceTextBlock;
             public static Image image;
+            public static Button continueButton;
+            public static List<string> sentences = new List<string>();
         }
     }
 }

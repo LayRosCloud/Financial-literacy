@@ -12,6 +12,9 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Border>
+            <Border.Effect>
+                <DropShadowEffect Color="#000" BlurRadius="30" Opacity="0.5"/>
+            </Border.Effect>
             <Border.Background>
                 <SolidColorBrush Color="#3D8361"/>
             </Border.Background>
@@ -43,7 +46,7 @@
             </StackPanel>
         </Grid>
         <Frame x:Name="frameHub" Grid.Column="1" NavigationUIVisibility="Hidden"/>
-        <Grid Grid.Column="1" x:Name="dialogueBox" Visibility="Collapsed">
+        <Grid Grid.Column="0" x:Name="dialogueBox" Visibility="Collapsed" Grid.ColumnSpan="2">
             <Rectangle Fill="#000" Opacity="0.6"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Grid>
@@ -62,8 +65,6 @@
                     <TextBlock x:Name="sentence" Text="{Binding Sentence}" FontWeight="Bold" FontSize="14" VerticalAlignment="Top" Foreground="#1C6758" Margin="0 16" TextWrapping="Wrap"/>
                     <Button x:Name="ContinueButton" Width="150" Height="20" Style="{StaticResource ButtonStyle}" FontSize="14" Content="Далее" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 30 0"/>
                 </Grid>
-                
-                
             </StackPanel>
         </Grid>
     </Grid>

@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-E:\AppGramota\AppGramota\obj\Debug\
+D:\gramotaapp\AppGramota\obj\Debug\
 AppGramota
 none
 false
 DEBUG;TRACE
-E:\AppGramota\AppGramota\App.xaml
+D:\gramotaapp\AppGramota\App.xaml
 5520688585
 
-16-626408739
+17-81902673
 13-1310406943
 Frames\FirstLevel.xaml;Frames\LessonFrame.xaml;Frames\SecondLevel.xaml;Frames\ShopFrame.xaml;MainWindow.xaml;
 

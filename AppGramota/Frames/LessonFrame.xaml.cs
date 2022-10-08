@@ -12,14 +12,18 @@ namespace AppGramota.Frames
     /// </summary>
     public partial class LessonFrame : Page
     {
-        public LessonFrame(List<string> sentences)
+        public LessonFrame(string path)
         {
             InitializeComponent();
+
             Level level = new Level();
             listLessons.Items.Clear();
             listLessons.ItemsSource = level.GetDefaultData();
-            DialogueSystem dialogue = new DialogueSystem(sentences.ToArray());
+
+            DialogueSystem dialogue = new DialogueSystem(new LoaderTextDialogue(path));
+            dialogue.VisibleDialogueBox();
         }
+
         public LessonFrame()
         {
             InitializeComponent();

@@ -21,15 +21,8 @@ namespace AppGramota.Frames
         public FirstLevel()
         {
             InitializeComponent();
-            List<string> sentences = new List<string>()
-            {
-                "Так мы у первой задачи...",
-                "Чтобы начать зарабатывать миллионы денег",
-                "Нам необходимо понять, есть ли баланс между моими деньгами",
-                "Сейчас я трачу деньги и не зарабатываю, поэтому можем назвать их убывающими.",
-                "Помоги мне выйти в позитивные деньги и заработать на машинку."
-            };
-            DialogueSystem dialogue = new DialogueSystem(sentences.ToArray());
+            DialogueSystem dialogue = new DialogueSystem(new LoaderTextDialogue("firstLevel/firstLevelOpening.txt"));
+            dialogue.VisibleDialogueBox();
 
             foreach (UIElement ui in leftListStackPanel.Children.Cast<UIElement>())
             {
@@ -79,8 +72,10 @@ namespace AppGramota.Frames
             {
                 if (leftListStackPanel.Children.Contains(left)||texts.Contains(left.Text)) 
                     continue;
+
                 leftListStackPanel.Children.Add(left);
             }
+
             leftListStackPanel.Children.Remove(leftTextBlocks.Find(x => ((TextBlock)sender).Text == x.Text));
             
             //Перерасчет шкалы.
@@ -89,36 +84,27 @@ namespace AppGramota.Frames
                 string[] sentence = right.Text.Split(':');
                 if (sentence.Length == 2)
                     progress.Value += Convert.ToInt32(sentence[1]);
-                
             }
+
             //Выводы по шкале.
             if (progress.Value > 50)
             {
                 progress.Foreground = Brushes.Green;
                 if (!greenActive)
                 {
-                    List<string> sentences = new List<string>()
-                    {
-                    "Отлично, эта зона то что нам надо",
-                    "Теперь я буду зарабатывать деньги",
-                    "Давай доведем её до конца."
-                    };
-                    DialogueSystem dialogue = new DialogueSystem(sentences.ToArray());
+                    DialogueSystem dialogue = new DialogueSystem(new LoaderTextDialogue("firstLevel/takeGreenZone.txt"));
+                    dialogue.VisibleDialogueBox();
                     greenActive = true;
                 }
             }
+
             else if (progress.Value == 50)
             {
                 progress.Foreground = Brushes.Blue;
                 if (!blueActive)
                 {
-                    List<string> sentences = new List<string>()
-                    {
-                    "Ого! Ты попал в синию зону.",
-                    "Эта зона мне не поможет заработать денег...",
-                    "Потому что я не смогу ни заработать, ни потратить денег"
-                    };
-                    DialogueSystem dialogue = new DialogueSystem(sentences.ToArray());
+                    DialogueSystem dialogue = new DialogueSystem(new LoaderTextDialogue("firstLevel/takeBlueZone.txt"));
+                    dialogue.VisibleDialogueBox();
                     blueActive = true;
                 }
             }
@@ -128,25 +114,12 @@ namespace AppGramota.Frames
             //завершение уровня
             if (progress.Value >= 100)
             {
-                List<string> sentences = new List<string>()
-                {
-                "Отлично, спасибо тебе!",
-                "Благодаря тебе мы преодалели первое испытание и нас ждет ещё столько приключений, приступай ко второму уровню (он недоступен)"
-                };
-
                 AppHuman.Level += 1;
-                AppFrame.frame.Navigate(new LessonFrame(sentences));
+                AppFrame.frame.Navigate(new LessonFrame("firstLevel/winFirstLevel.txt"));
             }
             else if (progress.Value <= 0)
-            {
-                List<string> sentences = new List<string>()
-                {
-                "Это провал!",
-                "Эта попытка была хорошей. Я все сотру и мы начнем сначала"
-                };
-                AppFrame.frame.Navigate(new LessonFrame(sentences));
-
-            }
+                AppFrame.frame.Navigate(new LessonFrame("firstLevel/loseFirstLevel.txt"));
+            
 
         }
     }

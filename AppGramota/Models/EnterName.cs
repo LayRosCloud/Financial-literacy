@@ -62,13 +62,8 @@ namespace AppGramota.Models
             AppHuman.text.Text = textName.Text;
             AppFrame.grid.Children.Remove(gridHub);
 
-            List<string> sentences = new List<string>()
-            {
-                $"Приятно познакомиться, {AppHuman.Name}",
-                "Меня Гоша, хотя я уже представлялся, ну ладно.",
-                "Давай приступим к зарабатыванию на машинку."
-            };
-            DialogueSystem dialogue = new DialogueSystem(sentences.ToArray());
+            DialogueSystem dialogue = new DialogueSystem(new LoaderTextDialogue("opening/enterName.txt"));
+            dialogue.VisibleDialogueBox();
         }
     }
 }
