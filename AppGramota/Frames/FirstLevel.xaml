@@ -18,19 +18,19 @@
                        Background="#3D8361" 
                        Foreground="#EEF2E6" Height="30" 
                        VerticalAlignment="Top" FontSize="20"/>
-        <StackPanel VerticalAlignment="Center" x:Name="leftListStackPanel">
-
-            <TextBlock Text="Подработка: 20" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Покупка видеоигры: -10" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Покупка сникерса: -15" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Помочь другу: 15"  Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Помыть машину: 20" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Собирать бутылки: 30" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Покупка чипсов: -10" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-        </StackPanel>
+        <ListBox x:Name="list" Background="Transparent" Margin="0 30 0 0" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Item}" Style="{StaticResource TextBlockGame}" MouseDown="TextBlock_MouseDown"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Border Grid.Column="1" BorderThickness="5 0 0 0" BorderBrush="#1C6758">
             <StackPanel x:Name="rightListStackPanel">
-                <ProgressBar x:Name="progress" Height="30" Value="30" Foreground="Red" Background="Transparent"/>
+                <Grid Height="30">
+                    <ProgressBar x:Name="progress"  Value="-20" Foreground="Red" Background="Transparent" ValueChanged="progress_ValueChanged" Maximum="100" Minimum="-100"/>
+                    <TextBlock x:Name="progressTextBlock" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" Text="Бюджет: -20"/>
+                </Grid>
                 <Rectangle Fill="#1C6758" Height="2"/>
                 <TextBlock FontSize="20" Text="Покупка магнитофона: -20"/>
                 <Rectangle Fill="#1C6758" Height="2"/>

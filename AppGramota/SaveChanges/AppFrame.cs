@@ -6,7 +6,6 @@ namespace AppGramota.SaveChanges
     internal class AppFrame
     {
         public static Frame frame;
-        public static Grid grid;
         public static DispatcherTimer timer;
     }
 }

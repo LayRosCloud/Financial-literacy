@@ -52,8 +52,7 @@ namespace AppGramota.Models
                 AppBoxs.Dialogue.dialogue.Visibility = Visibility.Collapsed;
                 if (AppHuman.Name == null)
                 {
-                    EnterName enterName = new EnterName();
-                    enterName.GenerateBox();
+                    AppBoxs.EnterNameBox.grid.Visibility = Visibility.Visible;
                 }
                 if (AppFrame.timer != null)
                 {

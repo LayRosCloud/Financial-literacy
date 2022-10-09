@@ -27,13 +27,12 @@
             
         </StackPanel>
         <StackPanel VerticalAlignment="Center" x:Name="leftListStackPanel">
-            
-            <TextBlock Text="Покупка видеоигры: -10" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Покупка сникерса: -15" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Помочь другу: 15"  Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Помыть машину: 20" Foreground="#1C6758" FontSize="20"  MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Собирать бутылки: 30" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
-            <TextBlock Text="Покупка чипсов: -10" Foreground="#1C6758" FontSize="20" MouseDown="TextBlock_MouseDown" MouseEnter="TextBlock_MouseEnter" MouseLeave="TextBlock_MouseLeave"/>
+            <TextBlock Text="Покупка видеоигры: -10" Style="{StaticResource TextBlockGame}"  MouseDown="TextBlock_MouseDown"/>
+            <TextBlock Text="Покупка сникерса: -15"  Style="{StaticResource TextBlockGame}" MouseDown="TextBlock_MouseDown"/>
+            <TextBlock Text="Помочь другу: 15"  Style="{StaticResource TextBlockGame}" MouseDown="TextBlock_MouseDown"/>
+            <TextBlock Text="Помыть машину: 20" Style="{StaticResource TextBlockGame}"  MouseDown="TextBlock_MouseDown"/>
+            <TextBlock Text="Собирать бутылки: 30" Style="{StaticResource TextBlockGame}" MouseDown="TextBlock_MouseDown"/>
+            <TextBlock Text="Покупка чипсов: -10" Style="{StaticResource TextBlockGame}" MouseDown="TextBlock_MouseDown"/>
         </StackPanel>
         <Border Grid.Column="1" BorderThickness="5 0 0 0" BorderBrush="#1C6758">
             <StackPanel x:Name="rightListStackPanel">

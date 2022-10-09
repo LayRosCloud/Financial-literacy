@@ -67,7 +67,7 @@
     <Compile Include="Frames\ShopFrame.xaml.cs">
       <DependentUpon>ShopFrame.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\EnterName.cs" />
+    <Compile Include="Models\LeftListObject.cs" />
     <Compile Include="Models\LoaderTextDialogue.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="SaveChanges\AppBoxs.cs" />

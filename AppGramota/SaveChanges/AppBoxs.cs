@@ -19,5 +19,9 @@ namespace AppGramota.SaveChanges
             public static Button continueButton;
             public static List<string> sentences = new List<string>();
         }
+        internal struct EnterNameBox
+        {
+            public static Grid grid;
+        }
     }
 }

@@ -11,10 +11,8 @@
             <ColumnDefinition Width="0.25*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        <!--Левое меню-->
         <Border>
-            <Border.Effect>
-                <DropShadowEffect Color="#000" BlurRadius="30" Opacity="0.5"/>
-            </Border.Effect>
             <Border.Background>
                 <SolidColorBrush Color="#3D8361"/>
             </Border.Background>
@@ -25,27 +23,46 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Финансовая грамотность" Foreground="#FFF" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="Финансовая грамотность" 
+                       Foreground="#FFF" 
+                       FontWeight="Bold" 
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Background="#1C6758">
                 <Image Source="Images/avatar.png"/>
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock x:Name="nameProfile"
-                        Text="имя пользователя" 
+                               Text="имя пользователя" 
                                Foreground="#FFF"
                                FontWeight="Bold"/>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="Images/star.png" Width="15"/>
-                        <TextBlock x:Name="levelProfile" Text="Уровень профиля" Foreground="#FFF" Opacity="0.6"/>
+                        <Image Source="Images/star.png" 
+                               Width="15"/>
+                        <TextBlock x:Name="levelProfile" 
+                                   Text="Уровень профиля" 
+                                   Foreground="#FFF" 
+                                   Opacity="0.6"/>
                     </StackPanel>
                     <TextBlock x:Name="numMoney" Text="Количество монет" Foreground="#FFF" Opacity="0.5"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="2">
-                <Button Height="30" Content="Игры" Style="{StaticResource ButtonStyle}" Margin="0 3 0 0" Click="Button_Click"/>
-                <Button Height="30" Content="Магазин" Style="{StaticResource ButtonStyle}" Margin="0 3 0 0" Click="Button_Click_1"/>
+                <Button Height="30" 
+                        Content="Игры" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Margin="0 3 0 0" 
+                        Click="Button_Click"/>
+                <Button Height="30" 
+                        Content="Магазин" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Margin="0 3 0 0" 
+                        Click="Button_Click_1"/>
             </StackPanel>
         </Grid>
+        <!--Рабочая часть программы правая (Страницы)-->
         <Frame x:Name="frameHub" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <!--Интерактивные части-->
+            <!--Диалоговое окно-->
         <Grid Grid.Column="0" x:Name="dialogueBox" Visibility="Collapsed" Grid.ColumnSpan="2">
             <Rectangle Fill="#000" Opacity="0.6"/>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center">
@@ -61,11 +78,64 @@
                             <SolidColorBrush Color="#FFF"/>
                         </Border.Background>
                     </Border>
-                    <TextBlock x:Name="nameHuman" Text="{Binding NameHuman}" FontWeight="Bold" FontSize="14" Background="#1C6758" Height="16" VerticalAlignment="Top" Foreground="#EEF2E6"/>
-                    <TextBlock x:Name="sentence" Text="{Binding Sentence}" FontWeight="Bold" FontSize="14" VerticalAlignment="Top" Foreground="#1C6758" Margin="0 16" TextWrapping="Wrap"/>
-                    <Button x:Name="ContinueButton" Width="150" Height="20" Style="{StaticResource ButtonStyle}" FontSize="14" Content="Далее" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 30 0"/>
+                    <TextBlock x:Name="nameHuman" 
+                               Text="{Binding NameHuman}" 
+                               FontWeight="Bold" 
+                               FontSize="14" 
+                               Background="#1C6758" 
+                               Height="16"
+                               VerticalAlignment="Top" 
+                               Foreground="#EEF2E6"/>
+                    <TextBlock x:Name="sentence" 
+                               FontWeight="Bold" 
+                               FontSize="14" 
+                               VerticalAlignment="Top" 
+                               Foreground="#1C6758" 
+                               Margin="0 16" 
+                               TextWrapping="Wrap"/>
+                    <Button x:Name="ContinueButton" 
+                            Width="150" 
+                            Height="20" 
+                            Style="{StaticResource ButtonStyle}"
+                            FontSize="14" 
+                            Content="Далее" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Bottom" 
+                            Margin="0 0 30 0"/>
                 </Grid>
             </StackPanel>
+        </Grid>
+        <!--Диалоговое окно для ввода текста-->
+        <Grid x:Name="enterNameBox" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Border>
+                <Border.Background>
+                    <SolidColorBrush Color="#000" Opacity="0.6"/>
+                </Border.Background>
+            </Border>
+            <Grid Width="250" 
+                  Height="200">
+                <Border CornerRadius="20">
+                    <Border.Background>
+                        <SolidColorBrush Color="#FFEAE3C4"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel VerticalAlignment="Center" 
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="Введите имя:"
+                               FontSize="20"
+                               Background="#FFF5F1E0"/>
+                    <TextBox Name="enterNameTextBox"
+                             FontSize="20" Width="200" 
+                             Background="Transparent" 
+                             BorderThickness="0 0 0 5" 
+                             BorderBrush="#1C6758"
+                             />
+                    <Button x:Name="completeButton"
+                            Content="Подтвердить" 
+                            Style="{StaticResource ButtonStyle}"
+                            Click="completeButton_Click"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

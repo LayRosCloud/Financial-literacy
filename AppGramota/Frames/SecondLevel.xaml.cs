@@ -18,17 +18,22 @@ namespace AppGramota.Frames
     {
         public List<TextBlock> leftTextBlocks = new List<TextBlock>();
         public List<TextBlock> rightTextBlocks = new List<TextBlock>();
+
         int maxDate = 30;
         int value = 0;
+
         double scoreValue = 0;
         double moneyValue = 0;
+
         DispatcherTimer timer;
         DispatcherTimer timerEnd;
         public SecondLevel()
         {
             InitializeComponent();
+
             timer = new DispatcherTimer();
             timerEnd = new DispatcherTimer();
+
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Tick += Timer_Tick;
             AppFrame.timer = timer;
@@ -49,7 +54,7 @@ namespace AppGramota.Frames
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e) // Счет до происшествия у главного героя
         {
             value += 1;
             timeOfEnd.Text = value + "/" + maxDate;
@@ -70,10 +75,12 @@ namespace AppGramota.Frames
 
                 moneyValue += -moneyValue + 10;
                 money.Text = "Заработанных денег: " + moneyValue.ToString();
+
                 timerEnd.Interval = new TimeSpan(0, 0, 1);
                 timerEnd.Tick += Timer_Tick1;
 
                 AppFrame.timer = timerEnd;
+
                 DialogueSystem dialogueSystem = new DialogueSystem(new LoaderTextDialogue("secondLevel/throwLevel.txt"));
                 dialogueSystem.VisibleDialogueBox();
 
@@ -86,12 +93,10 @@ namespace AppGramota.Frames
                 text.Text = "Ваза: -100";
 
                 RefreshScale();
-
-                
             }
         }
 
-        private void Timer_Tick1(object sender, EventArgs e)
+        private void Timer_Tick1(object sender, EventArgs e) //Обратный счет после происшествия у главного героя.
         {
             value -= 1;
             timeOfEnd.Text = value + "/" + maxDate;
@@ -107,8 +112,10 @@ namespace AppGramota.Frames
             if(value == 0)
             {
                 timerEnd.Stop();
+
                 AppHuman.Level += 1;
                 AppHuman.Money += moneyValue;
+
                 AppFrame.frame.Navigate(new LessonFrame("secondLevel/winLevel.txt"));
             }
 
@@ -120,18 +127,6 @@ namespace AppGramota.Frames
             DragDrop.DoDragDrop(text, text.Text, DragDropEffects.Copy);
         }
 
-        private void TextBlock_MouseEnter(object sender, MouseEventArgs e)
-        {
-            (sender as TextBlock).Background = new SolidColorBrush(Color.FromRgb(28, 103, 88));
-            (sender as TextBlock).Foreground = Brushes.White;
-        }
-
-        private void TextBlock_MouseLeave(object sender, MouseEventArgs e)
-        {
-            (sender as TextBlock).Background = Brushes.Transparent;
-            (sender as TextBlock).Foreground = new SolidColorBrush(Color.FromRgb(28, 103, 88));
-
-        }
 
         private void TextBlock_Drop(object sender, DragEventArgs e)
         {
@@ -151,6 +146,7 @@ namespace AppGramota.Frames
                     continue;
                 leftListStackPanel.Children.Add(left);
             }
+
             leftListStackPanel.Children.Remove(leftTextBlocks.Find(x => ((TextBlock)sender).Text == x.Text));
 
             //Перерасчет шкалы.
@@ -169,6 +165,7 @@ namespace AppGramota.Frames
 
                 }
             }
+            //Инициалзиация шкалы по цвету. Расходы>Доходов. Расходы == Доходы. Доходы > Расходы
             if (progress.Value > 50)
                 progress.Foreground = Brushes.Green;
             else if (progress.Value == 50)

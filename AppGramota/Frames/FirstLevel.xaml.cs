@@ -16,19 +16,29 @@ namespace AppGramota.Frames
     public partial class FirstLevel : Page
     {
         bool blueActive = false, greenActive = false;
-        public List<TextBlock> leftTextBlocks = new List<TextBlock>();
+        public List<LeftListObject> listItemsInterective;
         public List<TextBlock> rightTextBlocks = new List<TextBlock>();
         public FirstLevel()
         {
             InitializeComponent();
             DialogueSystem dialogue = new DialogueSystem(new LoaderTextDialogue("firstLevel/firstLevelOpening.txt"));
             dialogue.VisibleDialogueBox();
+            listItemsInterective = new List<LeftListObject>()
+            {
+                new LeftListObject("Подработка: 20"),
+                new LeftListObject("Помощь другу: 20"),
+                new LeftListObject("Покупка сникерса: -10"),
+            };
+            foreach (LeftListObject str in listItemsInterective)
+            {
+                list.Items.Add(str);
 
-            foreach (UIElement ui in leftListStackPanel.Children.Cast<UIElement>())
+            }
+            /*foreach (UIElement ui in leftListStackPanel.Children.Cast<UIElement>())
             {
                 if (ui is TextBlock text)
                     leftTextBlocks.Add(text);
-            }
+            }*/
             foreach (UIElement ui in rightListStackPanel.Children.Cast<UIElement>())
             {
                 if (ui is TextBlock text)
@@ -43,51 +53,9 @@ namespace AppGramota.Frames
             DragDrop.DoDragDrop(text, text.Text, DragDropEffects.Copy);
         }
 
-        private void TextBlock_MouseEnter(object sender, MouseEventArgs e)
+        private void progress_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            (sender as TextBlock).Background = new SolidColorBrush(Color.FromRgb(28, 103, 88));
-            (sender as TextBlock).Foreground = Brushes.White;
-        }
-
-        private void TextBlock_MouseLeave(object sender, MouseEventArgs e)
-        {
-            (sender as TextBlock).Background = Brushes.Transparent;
-            (sender as TextBlock).Foreground = new SolidColorBrush(Color.FromRgb(28, 103, 88));
-
-        }
-
-        private void TextBlock_Drop(object sender, DragEventArgs e)
-        {
-            ((TextBlock)sender).Text = (string)e.Data.GetData(DataFormats.Text);
-
-            progress.Value = 50;
-
-            List<string> texts = new List<string>();
-
-            foreach (TextBlock text in rightTextBlocks)
-                texts.Add(text.Text);
-            
-            //симуляция переносимости объектов.
-            foreach (TextBlock left in leftTextBlocks)
-            {
-                if (leftListStackPanel.Children.Contains(left)||texts.Contains(left.Text)) 
-                    continue;
-
-                leftListStackPanel.Children.Add(left);
-            }
-
-            leftListStackPanel.Children.Remove(leftTextBlocks.Find(x => ((TextBlock)sender).Text == x.Text));
-            
-            //Перерасчет шкалы.
-            foreach (TextBlock right in rightTextBlocks)
-            {
-                string[] sentence = right.Text.Split(':');
-                if (sentence.Length == 2)
-                    progress.Value += Convert.ToInt32(sentence[1]);
-            }
-
-            //Выводы по шкале.
-            if (progress.Value > 50)
+            if (progress.Value > 0)
             {
                 progress.Foreground = Brushes.Green;
                 if (!greenActive)
@@ -98,7 +66,7 @@ namespace AppGramota.Frames
                 }
             }
 
-            else if (progress.Value == 50)
+            else if (progress.Value == 0)
             {
                 progress.Foreground = Brushes.Blue;
                 if (!blueActive)
@@ -111,13 +79,50 @@ namespace AppGramota.Frames
             else
                 progress.Foreground = Brushes.Red;
 
+        }
+
+        private void TextBlock_Drop(object sender, DragEventArgs e)
+        {
+            ((TextBlock)sender).Text = (string)e.Data.GetData(DataFormats.Text);
+
+            progress.Value = 0;
+
+            List<string> texts = new List<string>();
+
+            foreach (TextBlock text in rightTextBlocks)
+                texts.Add(text.Text);
+            
+            //симуляция переносимости объектов.
+            foreach (LeftListObject left in listItemsInterective)
+            {
+                if (list.Items.Contains(left)||texts.Contains(left.Item)) 
+                    continue;
+
+                list.Items.Add(left);
+            }
+
+            list.Items.Remove(listItemsInterective.Find(x => ((TextBlock)sender).Text == x.Item));
+            
+            //Перерасчет шкалы.
+            foreach (TextBlock right in rightTextBlocks)
+            {
+                string[] sentence = right.Text.Split(':');
+                if (sentence.Length == 2)
+                {
+                    progress.Value += Convert.ToInt32(sentence[1]);
+                    
+                }
+            }
+
+            progressTextBlock.Text = "Бюджет: " + progress.Value.ToString();
+
             //завершение уровня
             if (progress.Value >= 100)
             {
                 AppHuman.Level += 1;
                 AppFrame.frame.Navigate(new LessonFrame("firstLevel/winFirstLevel.txt"));
             }
-            else if (progress.Value <= 0)
+            else if (progress.Value <= -100)
                 AppFrame.frame.Navigate(new LessonFrame("firstLevel/loseFirstLevel.txt"));
             
 
